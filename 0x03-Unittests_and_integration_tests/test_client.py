@@ -12,6 +12,13 @@ from fixtures import org_payload, repos_payload, expected_repos, apache2_repos
 TEST_PAYLOAD = (org_payload, repos_payload, expected_repos, apache2_repos)
 
 
+
+@parameterized_class([
+    {"nested_map": {"a": 1}, "path": ("a",), "expected": 1},
+    {"nested_map": {"a": {"b": 2}}, "path": ("a",), "expected": {"b": 2}},
+    {"nested_map": {"a": {"b": 2}}, "path": ("a", "b"), "expected": 2},
+])
+
 class TestGithubOrgClient(unittest.TestCase):
     """Test class for GithubOrgClient."""
 
