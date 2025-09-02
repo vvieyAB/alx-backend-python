@@ -1,5 +1,26 @@
 #!/usr/bin/env python3
 
+#!/usr/bin/env python3
+"""Fixtures for GithubOrgClient tests."""
+
+org_payload = {
+    "login": "google",
+    "id": 1342004,
+    "node_id": "MDEyOk9yZ2FuaXphdGlvbjEzNDIwMDQ=",
+    "repos_url": "https://api.github.com/orgs/google/repos",
+}
+
+repos_payload = [
+    {"id": 7697149, "name": "episodes.dart", "license": {"key": "apache-2.0"}},
+    {"id": 7776515, "name": "cpp-netlib", "license": {"key": "boost"}},
+    {"id": 8640775, "name": "dagger", "license": {"key": "apache-2.0"}},
+]
+
+expected_repos = ["episodes.dart", "cpp-netlib", "dagger"]
+
+apache2_repos = ["episodes.dart", "dagger"]
+
+
 TEST_PAYLOAD = [
   (
     {"repos_url": "https://api.github.com/orgs/google/repos"},
