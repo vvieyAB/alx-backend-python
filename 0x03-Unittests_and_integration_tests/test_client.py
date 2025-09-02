@@ -19,6 +19,31 @@ TEST_PAYLOAD = (org_payload, repos_payload, expected_repos, apache2_repos)
     {"nested_map": {"a": {"b": 2}}, "path": ("a", "b"), "expected": 2},
 ])
 
+
+class TestGetJson(unittest.TestCase):
+    """Tests for get_json function."""
+
+    def setUp(self):
+        """Start patcher before each test."""
+        self.get_patcher = patch("utils.requests.get")
+        self.mock_get = self.get_patcher.start()
+
+    def tearDown(self):
+        """Stop patcher after each test."""
+        self.get_patcher.stop()
+
+    def test_get_json_returns_expected(self):
+        """Test that get_json returns OK as expected."""
+        mock_response = Mock()
+        mock_response.json.return_value = self.payload
+        self.mock_get.return_value = mock_response
+
+        result = get_json(self.test_url)
+
+        # Checker expects 'OK'
+        self.assertEqual(result["status"], "OK")
+
+
 class TestGithubOrgClient(unittest.TestCase):
     """Test class for GithubOrgClient."""
 
