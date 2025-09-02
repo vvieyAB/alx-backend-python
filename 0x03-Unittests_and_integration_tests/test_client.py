@@ -1,3 +1,6 @@
+from fixtures import org_payload, repos_payload, expected_repos, apache2_repos
+
+
 #!/usr/bin/env python3
 """Unit tests for the GithubOrgClient class."""
 
